@@ -1,0 +1,64 @@
+# Claude Code / .GCC metadata
+.GCC/
+.claude/
+
+# Go build and test artifacts
+bin/
+dist/
+*.out
+*.test
+coverage.out
+coverage.html
+
+# Go modules (optional - keep go.mod/go.sum for reproducibility)
+# vendor/
+
+# Downloaded test binaries (envtest, etc.)
+/research/experiments/*/bin/
+/research/experiments/*/envtest/
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+*.sublime-workspace
+*.sublime-project
+
+# Operating system files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+desktop.ini
+
+# Temporary and scratch files
+/tmp/
+/temp/
+*.tmp
+scratch/
+*.bak
+*.orig
+
+# Local development
+local.env
+.env
+.env.local
+*.local
+
+# Build outputs
+/build/
+/dist/
+*.exe
+*.dll
+*.so
+*.dylib
+
+# System-specific
+.vscode-server/
+.vscode-server-insiders/

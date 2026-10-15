@@ -1,0 +1,24 @@
+version: "2"
+linters:
+  default: none
+  enable:
+    - kubeapilinter
+  settings:
+    custom:
+      kubeapilinter:
+        type: module
+        description: KAL
+        settings:
+          linters:
+            enable: [defaults, defaultorrequired, forbiddenmarkers, optionalfields, optionalorrequired]
+            disable: ["*"]
+          lintersConfig:
+            optionalfields:
+              pointers:
+                preference: Always
+            forbiddenmarkers:
+              markers:
+                - identifier: "kubebuilder:default"
+                - identifier: "default"
+issues:
+  uniq-by-line: false

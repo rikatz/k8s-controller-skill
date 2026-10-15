@@ -1,0 +1,11 @@
+// +kubebuilder:rbac:groups=demo.example.com,resources=widgets,verbs=get;list;watch;patch
+// +kubebuilder:rbac:groups=demo.example.com,resources=widgets/status,verbs=get;update;patch
+// +kubebuilder:rbac:groups=demo.example.com,resources=widgets/finalizers,verbs=update
+// +kubebuilder:rbac:groups=events.k8s.io,resources=events,verbs=create;patch
+// +kubebuilder:rbac:groups="",resources=secrets,verbs=get,resourceNames=widget-credentials
+// +kubebuilder:rbac:groups=authentication.k8s.io,resources=tokenreviews,verbs=create
+// +kubebuilder:rbac:groups=authorization.k8s.io,resources=subjectaccessreviews,verbs=create
+// +kubebuilder:rbac:groups=coordination.k8s.io,namespace=widget-system,roleName=leader-election-role,resources=leases,verbs=get;create;update
+// +kubebuilder:rbac:groups="",namespace=widget-system,roleName=leader-election-role,resources=events,verbs=create;patch
+// +kubebuilder:rbac:urls=/metrics,verbs=get,roleName=metrics-reader
+package rbacmark

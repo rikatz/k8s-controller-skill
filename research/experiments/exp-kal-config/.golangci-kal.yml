@@ -1,0 +1,63 @@
+version: "2"
+linters:
+  default: none
+  enable:
+    - kubeapilinter
+  settings:
+    custom:
+      kubeapilinter:
+        type: module
+        description: Kube API Linter
+        settings:
+          linters:
+            disable: ["*"] # explicit opt-in: new KAL linters never appear on upgrade
+            enable:
+              # enabled in all four reference repos
+              - duplicatemarkers
+              - jsontags
+              - nodurations
+              - nofloats
+              - nomaps
+              - nonullable
+              - notimestamp
+              - optionalorrequired
+              - ssatags
+              - statussubresource
+              - uniquemarkers
+              # enabled by openshift/api, cluster-api and CAPV
+              - commentstart
+              - conditions
+              - integers
+              - maxlength
+              - nobools
+              - optionalfields
+              - requiredfields
+              # defaults allowed, but well-formed
+              - defaults
+              - defaultorrequired
+          lintersConfig:
+            conditions:
+              isFirstField: Warn
+              usePatchStrategy: Forbid # CRDs do not use patchStrategy
+              useProtobuf: Forbid      # CRDs do not use protobuf tags
+            optionalfields:
+              pointers:
+                preference: WhenRequired # non-pointer when the zero value is invalid
+                policy: SuggestFix
+              omitempty: {policy: SuggestFix}
+              omitzero: {policy: SuggestFix}
+            requiredfields:
+              pointers: {policy: SuggestFix}
+              omitempty: {policy: SuggestFix}
+              omitzero: {policy: SuggestFix}
+            defaults:
+              preferredDefaultMarker: kubebuilder:default
+  exclusions:
+    generated: strict
+    rules:
+      - linters: [kubeapilinter]
+        path-except: "^api/"
+issues:
+  max-issues-per-linter: 0
+  max-same-issues: 0
+  uniq-by-line: false # otherwise several diagnostics on one field line collapse into one
